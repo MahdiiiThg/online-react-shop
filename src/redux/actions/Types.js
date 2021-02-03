@@ -1,0 +1,5 @@
+export const FETCH_POSTS = "FETCH_POSTS"
+export const NEW_POSTS = "NEW_POSTS"
+
+export const SHOW_PRODUCT_CARD = "SHOW_PRODUCT_CARD"
+export const HIDE_PRODUCT_CARD = "HIDE_PRODUCT_CARD"

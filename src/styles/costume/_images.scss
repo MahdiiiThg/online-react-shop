@@ -1,0 +1,16 @@
+.product-slider-image {
+  height: 230px;
+  width: 230px;
+  border-radius: 10px;
+  @include respond-to(phone) {
+    height: 190px;
+    width: 190px;
+  }
+}
+.product-slider-container {
+  width: 230px;
+  border-radius: 10px;
+  @include respond-to(phone) {
+    width: 190px;
+  }
+}
