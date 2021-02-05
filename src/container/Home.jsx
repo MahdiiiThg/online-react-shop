@@ -62,7 +62,7 @@ function Home(props) {
 
 const mapStateToProps = (state) => {
   return {
-    products: state
+    products: state.productReducer
   }
 }
 
