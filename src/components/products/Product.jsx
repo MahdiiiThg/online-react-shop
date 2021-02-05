@@ -5,7 +5,11 @@ import { BsHeart } from 'react-icons/bs'
 
 // react-redux
 import { connect, useSelector  } from 'react-redux'
-import { activeSIngleProduct, deActiveSIngleProduct } from '../../redux/actions/productActions'
+import { 
+  activeSIngleProduct, 
+  deActiveSIngleProduct,
+  getProductId
+} from '../../redux/actions/productActions'
 // components
 import Title from '../public/Title'
 
@@ -23,7 +27,7 @@ function Product({data, dispatch }) {
   }
 
   return (
-    <div className="product-slider-container relative  cursor-pointer">
+    <div id={data.id} onClick={() => dispatch(getProductId(data.id))} className="product-slider-container relative  cursor-pointer">
       <img onClick={() => onOpen()} className="product-slider-image" src={data.src} alt={data.src}/>
       <span className=" 
         text-red-500

@@ -6,7 +6,7 @@ import axios from 'axios'
 // api
 import { api } from '../api/api'
 
-export const fetchProducts = ({brand,product_type,product_category}) => async dispatch => {
+export const fetchProducts = (brand,product_type,product_category) => async dispatch => {
   try {
     dispatch({type: types.SET_LOADING})
     const res = await axios({
@@ -49,6 +49,13 @@ export const fetchSingleProducts = (id) => async dispatch => {
       payload: console.log('ERROR',e)
     })
   }
+}
+
+export const getProductId = (id) => async dispatch => {
+  dispatch({
+    type: types.FETCH_SINGLE_PRODUCT_ID,
+    payload: id
+  })
 }
 
 export const setLoading = () => async dispatch => {
