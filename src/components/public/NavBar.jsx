@@ -7,7 +7,7 @@ import { RiSearch2Fill } from 'react-icons/ri';
 import { BsFillPersonFill } from 'react-icons/bs';
 
 // react router
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function NavBar() {
   return (
@@ -26,16 +26,16 @@ export default function NavBar() {
     ">
       <div className="flex justify-between px-10 sm:px-20 w-screen">
         <div>
-          <Link  to="/"><AiFillHome /></Link>
+          <NavLink  to="/"><AiFillHome /></NavLink>
         </div>
         <div>
-          <Link  to="/search"><RiSearch2Fill /></Link>
+          <NavLink  to="/search"><RiSearch2Fill /></NavLink>
         </div>
         <div>
-          <Link  to="/"><BsFillPersonFill /></Link>
+          <NavLink  to="/"><BsFillPersonFill /></NavLink>
         </div>
         <div>
-          <Link  to="/basket"><FaShoppingBag /></Link>
+          <NavLink  to="/basket"><FaShoppingBag /></NavLink>
         </div>
       </div>
     </div>
