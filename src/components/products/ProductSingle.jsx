@@ -13,9 +13,6 @@ import { deActiveSIngleProduct } from '../../redux/actions/productActions'
 // icons
 import { AiOutlineClose } from 'react-icons/ai'
 
-// images
-import Image from '../../assets/images/pink.jpg'
-
 // components
 import Drawer from '../public/Drawer'
 import SliderVertical from '../swipers/vertical-slider'
@@ -23,7 +20,7 @@ import Title from '../public/Title'
 import RadioGroup from '../public/RadioGroup'
 
 function ProductSingle({data,dispatch}) {
-  
+  console.log('single page', data);
   // get state
   const openState = useSelector(state => state.productReducer.showProduct)
 
@@ -33,7 +30,9 @@ function ProductSingle({data,dispatch}) {
   const [color, setColor] = useState('red')
   const [openOption, setOpenOption] = useState(false)
   const [sizeValue, setSizeValue] = useState(false)
+  let images = [data.api_featured_image, data.product_api_url]
 
+  // deActive single Product
   const onOpen = () => {
     if(openState) {
       return dispatch(deActiveSIngleProduct())
@@ -72,7 +71,7 @@ function ProductSingle({data,dispatch}) {
        <SliderVertical>
          {
            data &&
-           data.src.map((image, index) =>{
+           images.map((image, index) =>{
              return (
               <img src={image} key={index} alt=""/>
              )
@@ -81,7 +80,21 @@ function ProductSingle({data,dispatch}) {
         </SliderVertical>
       </Col>
       <Col>
-         <AiOutlineClose onClick={onOpen} className="absolute top-10 right-10 z-50 text-red-700 font-bold" />
+         <AiOutlineClose 
+          onClick={onOpen} 
+          className="
+            absolute 
+            top-10 
+            right-10 
+            z-50 
+            text-red-700 
+            font-bold 
+            bg-white 
+            w-16 
+            h-16 
+            rounded-full 
+            cursor-pointer"
+            />
       </Col>
       </animated.div>
       <Col span={24}>
@@ -105,10 +118,23 @@ function ProductSingle({data,dispatch}) {
                 ">
             </div>
             <div >
-              <Title padding="py-3" size="text-4xl" title={data.productsName[0]} />
-              <Title padding="py-3" size="text-4xl" title={data.productsName[1]} />
+              <Title 
+                padding="py-3" 
+                size="text-4xl" 
+                title={data.name} 
+                />
+              <Title 
+                padding="py-3" 
+                size="text-4xl" 
+                title={data.brand}
+                />
               <span className="text-gray-700 pt-4 block">${data.price}</span>
-              <Title weight="font-light" padding="py-3" size="text-3xl" title={'Your size'} />
+              <Title 
+                weight="font-light" 
+                padding="py-3" 
+                size="text-3xl" 
+                title={'Your size'}
+                />
               <Radio.Group
                 options={optionsSize}
                 onChange={onChangeSize}

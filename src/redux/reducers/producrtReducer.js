@@ -4,7 +4,8 @@ const initialState = {
   productList: [],
   productSingle: [],
   productId: '',
-  showProduct: false
+  showProduct: false,
+  loading: false
 }
 
 export const productReducer = (state = initialState, action) => {
@@ -33,6 +34,16 @@ export const productReducer = (state = initialState, action) => {
       return {
         ...state,
         showProduct: false
+      }
+    case Types.SET_LOADING:
+      return {
+        ...state,
+        loading: true
+      }
+    case Types.REMOVE_LOADING:
+      return {
+        ...state,
+        loading: false
       }
     default:
       return state

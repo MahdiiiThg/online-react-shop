@@ -28,7 +28,7 @@ function Product({data, dispatch }) {
 
   return (
     <div id={data.id} onClick={() => dispatch(getProductId(data.id))} className="product-slider-container relative  cursor-pointer">
-      <img onClick={() => onOpen()} className="product-slider-image" src={data.src} alt={data.src}/>
+      <img onClick={() => onOpen()} className="product-slider-image" src={data.api_featured_image} alt={data.api_featured_image}/>
       <span className=" 
         text-red-500
         text-3xl
@@ -43,13 +43,7 @@ function Product({data, dispatch }) {
         <BsHeart />
       </span>
       <div className="pt-3 uppercase">
-        {
-          data.productsName.map((title, index) => {
-            return (
-              <Title key={index} padding='pt-2' size={'text-2xl'} title={title} />
-            )
-          })
-        }
+        <Title padding='pt-2' size={'text-2xl'} title={data.name} />
       </div>
       <span className="text-gray-700 text-2xl">${data.price}</span>
     </div>

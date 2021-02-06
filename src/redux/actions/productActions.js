@@ -39,7 +39,7 @@ export const fetchSingleProducts = (id) => async dispatch => {
       url: api.singleProduct+`${id}.json`,
     })
     dispatch({
-      type: types.FETCH_PRODUCT,
+      type: types.FETCH_SINGLE_PRODUCT,
       payload: res
     })
     dispatch({type: types.REMOVE_LOADING})

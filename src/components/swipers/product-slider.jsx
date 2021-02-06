@@ -38,17 +38,15 @@ export default function ProductSlider(props) {
         }}
       >
         {
-          props.data 
-          ?
-            props.data.map((data, index) => {
+          props.data.data
+          &&
+            props.data.data.slice(0, 10).map((data, index) => {
               return (
                 <SwiperSlide key={index}>
                   <Product data={data}/>
                 </SwiperSlide>
               )
             })
-          :
-            <div><img src={noimage} alt="no image"/></div>
         }
       </Swiper>
     </React.Fragment>

@@ -26,16 +26,16 @@ export default function NavBar() {
     ">
       <div className="flex justify-between px-10 sm:px-20 w-screen">
         <div>
-          <NavLink  to="/"><AiFillHome /></NavLink>
+          <NavLink activeClassName="text-red-500 text-6xl transition-all" exact  to="/"><AiFillHome /></NavLink>
         </div>
         <div>
-          <NavLink  to="/search"><RiSearch2Fill /></NavLink>
+          <NavLink activeClassName="text-red-500 text-6xl transition-all" to="/search"><RiSearch2Fill /></NavLink>
         </div>
         <div>
-          <NavLink  to="/"><BsFillPersonFill /></NavLink>
+          <NavLink activeClassName="text-red-500 text-6xl transition-all" to="/favorits"><BsFillPersonFill /></NavLink>
         </div>
         <div>
-          <NavLink  to="/basket"><FaShoppingBag /></NavLink>
+          <NavLink activeClassName="text-red-500 text-6xl transition-all" to="/basket"><FaShoppingBag /></NavLink>
         </div>
       </div>
     </div>

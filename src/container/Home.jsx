@@ -14,27 +14,27 @@ import pinktwo from '../assets/images/pinktwo.png'
 
 function Home(props) {
   console.log('props', props);
-
+  const [products, setProducts] = useState()
+  const [product, setProduct] = useState()
   const openState = useSelector(state => state.productReducer.showProduct)
 
   useEffect(() => {
 
     setTimeout(() => {
-      return props.fetchProducts()
+      props.fetchProducts()
+      setProducts(props.products)
+      return
     }, 1000);
+    if(props.productId) {
+      setTimeout(() => {
+        props.fetchSingleProducts(props.productId)
+        setProduct(props.product)
+      }, 1000);
+    }
+    return
+  },[fetchProducts, props.productId])
 
-    // setTimeout(() => {
-    //   return props.fetchProducts()
-    // }, 1000);
-
-  },[fetchProducts])
-
-  const [products, setProducts] = useState([
-    { id: 324, src: pinkone, productsName: ['Paper Bag', 'Bermuda Shorts'], price: 22.8 },
-    { id: 325, src: pinktwo, productsName: ['Paper Bag', 'Bermuda Shorts'], price: 22.8 },
-    { id: 322, src: pinkone, productsName: ['Paper Bag', 'Bermuda Shorts'], price: 22.8 },
-    { id: 321, src: pinktwo, productsName: ['Paper Bag', 'Bermuda Shorts'], price: 22.8 }
-  ])
+  
 
   const [productSingle, setProductSingle] = useState(
     { id: 324 ,src: [ pinkone, pinktwo ], productsName: ['Paper Bag', 'Bermuda Shorts'], price: 22.8 },
@@ -43,27 +43,38 @@ function Home(props) {
   return (
     <MainLayout>
       { 
-        openState && 
-          <ProductSingle data={productSingle} />
-        }
-        { !openState && 
-          <>
-            <div className="mt-10">
-              <ProductSlider data={products} />
-            </div>
-            <div className="mt-10">
-              <ProductSlider data={products} />
-            </div>
-          </>
-        }
+        openState 
+        && 
+        product && <ProductSingle data={product.data} />
+      }
+      {
+        props.loading ? 
+        <div>Loading</div> : 
+        (
+          !openState && 
+            <>
+              <div className="mt-10">
+                {
+                  products && <ProductSlider data={products} />
+                }
+              </div>
+              {/* <div className="mt-10">
+                <ProductSlider data={products} />
+              </div> */}
+            </>
+        )
+      }
     </MainLayout>
   )
 }
 
 const mapStateToProps = (state) => {
   return {
-    products: state.productReducer
+    products: state.productReducer.productList,
+    product: state.productReducer.productSingle,
+    productId: state.productReducer.productId,
+    loading: state.productReducer.loading
   }
 }
 
-export default connect(mapStateToProps, { fetchProducts })(Home)
+export default connect(mapStateToProps, { fetchProducts, fetchSingleProducts })(Home)
