@@ -40,7 +40,8 @@ export default function ProductSlider(props) {
         {
           props.data.data
           &&
-            props.data.data.slice(0, 10).map((data, index) => {
+            props.data.data.slice(1, 10).map((data, index) => {
+              console.log(data)
               return (
                 <SwiperSlide key={index}>
                   <Product data={data}/>

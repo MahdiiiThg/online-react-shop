@@ -7,6 +7,7 @@ import { createBrowserHistory } from "history";
 import Home from '../container/Home'
 import ShoppingBasket from '../container/ShoppingBasket'
 import Search from '../container/Search'
+import ProductCardSingle from '../container/ProductCardSingle'
 
 const history = createBrowserHistory();
 
@@ -17,6 +18,7 @@ export default function AppRouter() {
           <Route path="/" component={Home} exact={true} />
           <Route path="/basket" component={ShoppingBasket} />
           <Route path="/search" component={Search} />
+          <Route path="/product/:id" component={ProductCardSingle} />
         </Switch>
     </BrowserRouter>
   )

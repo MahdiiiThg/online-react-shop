@@ -13,39 +13,33 @@ import pinkone from '../assets/images/pink.jpg'
 import pinktwo from '../assets/images/pinktwo.png'
 
 function Home(props) {
-  console.log('props', props);
   const [products, setProducts] = useState()
   const [product, setProduct] = useState()
   const openState = useSelector(state => state.productReducer.showProduct)
 
   useEffect(() => {
-
     setTimeout(() => {
       props.fetchProducts()
       setProducts(props.products)
       return
     }, 1000);
     if(props.productId) {
-      setTimeout(() => {
-        props.fetchSingleProducts(props.productId)
-        setProduct(props.product)
-      }, 1000);
+      GetSingleProduct()
+      setProduct(props.product)
     }
     return
-  },[fetchProducts, props.productId])
+  },[])
 
-  
-
-  const [productSingle, setProductSingle] = useState(
-    { id: 324 ,src: [ pinkone, pinktwo ], productsName: ['Paper Bag', 'Bermuda Shorts'], price: 22.8 },
-  )
+  const GetSingleProduct = () => {
+    props.fetchSingleProducts(props.productId)
+  }
 
   return (
     <MainLayout>
       { 
         openState 
         && 
-        product && <ProductSingle data={product.data} />
+        product && <ProductSingle data={product} />
       }
       {
         props.loading ? 

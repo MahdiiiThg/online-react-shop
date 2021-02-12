@@ -20,17 +20,13 @@ import Title from '../public/Title'
 import RadioGroup from '../public/RadioGroup'
 
 function ProductSingle({data,dispatch}) {
-  console.log('single page', data);
   // get state
   const openState = useSelector(state => state.productReducer.showProduct)
 
   // animation
   const fadein = useSpring({opacity: 1, from: {opacity: 0}, config: { duration: 700 } })
 
-  const [color, setColor] = useState('red')
   const [openOption, setOpenOption] = useState(false)
-  const [sizeValue, setSizeValue] = useState(false)
-  let images = [data.api_featured_image, data.product_api_url]
 
   // deActive single Product
   const onOpen = () => {
@@ -39,48 +35,16 @@ function ProductSingle({data,dispatch}) {
     }
   }
 
-  // on change radio color
-  const onChange = (e) => {
-    setColor(e.target.value)
-  }
-
   // drawer
   const onClose = () => {
-    console.log(openOption);
     return setOpenOption(!openOption)
   }
 
-  // onChangeSize
-  const onChangeSize = e => {
-    console.log('onChangeSize', e.target.value);
-    setSizeValue(e.target.value)
-  };
-
-  // optionsSize
-  const optionsSize = [
-    { label: 'S', value: 'S' },
-    { label: 'M', value: 'M' },
-    { label: 'L', value: 'L' },
-    { label: 'XL', value: 'XL' },
-  ];
+  let images = [data.api_featured_image, data.image_link]
 
   return (
-    <Row className="relative dialog" >
-      <animated.div style={fadein}>
-      <Col span={24} className="flex justify-center">
-       <SliderVertical>
-         {
-           data &&
-           images.map((image, index) =>{
-             return (
-              <img src={image} key={index} alt=""/>
-             )
-           })
-         }
-        </SliderVertical>
-      </Col>
-      <Col>
-         <AiOutlineClose 
+    <Row className="relative dialog relative" >
+      <AiOutlineClose 
           onClick={onOpen} 
           className="
             absolute 
@@ -95,6 +59,19 @@ function ProductSingle({data,dispatch}) {
             rounded-full 
             cursor-pointer"
             />
+      <animated.div style={fadein}>
+      <Col span={24} className="flex justify-center">
+       <SliderVertical>
+         {  
+           data &&
+           images.map((image, index) =>{
+            
+             return (
+              <img src={image} key={index} alt=""/>
+             )
+           })
+         }
+        </SliderVertical>
       </Col>
       </animated.div>
       <Col span={24}>
@@ -135,15 +112,14 @@ function ProductSingle({data,dispatch}) {
                 size="text-3xl" 
                 title={'Your size'}
                 />
-              <Radio.Group
-                options={optionsSize}
-                onChange={onChangeSize}
-                value={sizeValue}
-                optionType="button"
-                buttonStyle="solid"
-              />
             </div>
-            <RadioGroup value={color} onChange={onChange}/>
+            <div className=" max-h-96 overflow-y-scroll">
+              {
+                data.product_colors.map(color => {
+                  return <div style={{background: color.hex_value}} className={`h-20 w-20 rounded-full my-2`}></div>
+                })
+              }
+            </div>
           </div>
           <div className="mt-10 w-full text-center">
             <button className="bg-black px-20 py-5 rounded-3xl text-white mx-auto text-4xl" >Add to basket</button>

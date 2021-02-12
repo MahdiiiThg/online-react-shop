@@ -18,10 +18,8 @@ function Product({data, dispatch }) {
   
   const onOpen = () => {
     if(openState) {
-      console.log(openState);
       return dispatch(deActiveSIngleProduct())
     } else if(!openState) {
-      console.log(openState);
       return dispatch(activeSIngleProduct())
     }
   }

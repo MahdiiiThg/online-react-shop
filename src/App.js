@@ -8,7 +8,7 @@ import {
 
 // style
 import './App.scss'
-
+import 'antd/dist/antd.css';
 // react-spring
 import {useSpring, animated} from 'react-spring'
 

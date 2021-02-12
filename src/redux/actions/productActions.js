@@ -14,7 +14,6 @@ export const fetchProducts = (brand,product_type,product_category) => async disp
       url: api.baseUrl,
       params: {
         brand: brand,
-        product_type: product_type,
         product_category: product_category
       }
     })
@@ -26,7 +25,7 @@ export const fetchProducts = (brand,product_type,product_category) => async disp
   } catch(e) {
     dispatch({
       type: types.ERROR,
-      payload: console.log('ERROR',e)
+      payload: e
     })
   }
 }
@@ -46,7 +45,7 @@ export const fetchSingleProducts = (id) => async dispatch => {
   } catch(e) {
     dispatch({
       type: types.ERROR,
-      payload: console.log('ERROR',e)
+      payload: e
     })
   }
 }
